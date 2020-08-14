@@ -44,7 +44,7 @@ const Checkout = () => {
     } catch (err) {
       setMessage('error');
     } finally {
-      setLoading(true);
+      setLoading(false);
       setInputForm({ amount: '' });
     }
   };
@@ -78,7 +78,7 @@ const Checkout = () => {
             </Button>
           </Grid>
           <Grid item xs={12} className={classes.itemGrid}>
-            <Typography variant="subtitle2" align="center" color="error" gutterBottom>
+            <Typography component="small" align="center" color="error" gutterBottom>
               {message}
             </Typography>
           </Grid>
