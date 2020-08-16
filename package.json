@@ -2,6 +2,7 @@
   "name": "razorpay-demo",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@testing-library/jest-dom": "^4.2.4",
@@ -15,9 +16,11 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
     "prop-types": "^15.7.2",
+    "razorpay": "^2.0.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
+    "react-script-tag": "^1.1.2",
     "react-scripts": "3.4.3",
     "uuid": "^8.3.0"
   },

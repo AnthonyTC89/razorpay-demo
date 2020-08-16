@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const path = require('path');
 
 const orderRoutes = require('./routes/orders');
+const razorpayRoutes = require('./routes/razorpay');
 
 // eslint-disable-next-line
 const { mongoose } = require('./database');
@@ -19,6 +20,7 @@ app.use(express.json());
 
 // Routes
 app.use(orderRoutes);
+app.use(razorpayRoutes);
 
 // Static Files
 const index = path.join(__dirname, '../build');
