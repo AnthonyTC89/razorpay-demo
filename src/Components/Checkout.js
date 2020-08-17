@@ -61,6 +61,7 @@ const Checkout = () => {
       const body = { amount: parseInt(inputForm.amount, 10) };
       const reqOptions = { timeout: 30000 };
       const response = await axios.post('/api/razorpay', body, reqOptions);
+
       const key = process.env.REACT_APP_RAZORPAY_KEY_ID;
       const options = {
         key, // Enter the Key ID generated from the Dashboard
@@ -122,11 +123,13 @@ const Checkout = () => {
               {loading ? 'wait...' : 'pay'}
             </Button>
           </Grid>
-          <Grid item xs={12} className={classes.itemGrid}>
-            <Typography component="small" align="center" color="error" gutterBottom>
-              {message}
-            </Typography>
-          </Grid>
+          {message === null ? null : (
+            <Grid item xs={12} className={classes.itemGrid}>
+              <Typography component="small" align="center" color="error" gutterBottom>
+                {message}
+              </Typography>
+            </Grid>
+          )}
         </Grid>
       </form>
     </Paper>
