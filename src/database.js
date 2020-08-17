@@ -18,10 +18,10 @@ const options = {
 
 mongoose.connect(uri, options)
   .then(() => {
-    console.log('Successful connection MongoDB Atlas');
+    console.log('Successful connection MongoDB');
   })
   .catch((err) => {
-    console.log('Unsuccessful connection MongoDB Atlas', err);
+    console.log('Unsuccessful connection MongoDB', err);
   });
 
 module.exports = mongoose;

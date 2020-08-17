@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+require('dotenv').config();
 const express = require('express');
 const Razorpay = require('razorpay');
 const Order = require('../models/Order');
@@ -6,8 +7,8 @@ const Order = require('../models/Order');
 const router = express.Router();
 
 const instance = new Razorpay({
-  key_id: 'rzp_test_Baj0ZJ8G2mlZZy',
-  key_secret: 'mvILpY5Z5m7tCEHJgqu16EKR',
+  key_id: process.env.REACT_APP_RAZORPAY_KEY_ID,
+  key_secret: process.env.REACT_APP_RAZORPAY_KEY_SECRET,
 });
 
 router.post('/api/razorpay', async (req, res) => {

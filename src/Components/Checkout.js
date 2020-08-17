@@ -41,11 +41,12 @@ const Checkout = () => {
     ));
   };
 
-  const handleVerifyResponse = (response, razorpay_order_id) => {
+  const handleVerifyResponse = async (response, razorpay_order_id) => {
     const { razorpay_payment_id, razorpay_signature } = response;
-    const secret = 'mvILpY5Z5m7tCEHJgqu16EKR';
+    const secret = process.env.REACT_APP_RAZORPAY_KEY_SECRET;
     const generated_signature = HmacSHA256(`${razorpay_order_id}|${razorpay_payment_id}`, secret).toString(CryptoJS.enc.Hex);
     if (generated_signature === razorpay_signature) {
+      await axios.post('/api/payments', response, { timeout: 20000 });
       setMessage('Successful');
     } else {
       setMessage('Unsuccessful');
@@ -60,8 +61,9 @@ const Checkout = () => {
       const body = { amount: parseInt(inputForm.amount, 10) };
       const reqOptions = { timeout: 30000 };
       const response = await axios.post('/api/razorpay', body, reqOptions);
+      const key = process.env.REACT_APP_RAZORPAY_KEY_ID;
       const options = {
-        key: 'rzp_test_Baj0ZJ8G2mlZZy', // Enter the Key ID generated from the Dashboard
+        key, // Enter the Key ID generated from the Dashboard
         amount: response.data.amount, // Amount is in currency subunits. Default currency is INR.
         currency: response.data.currency,
         name: 'Acme Corp',

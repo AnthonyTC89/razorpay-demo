@@ -14,8 +14,6 @@ const OrderSchema = new Schema({
   status: { type: String, required: true },
   attempts: { type: Number, required: true },
   notes: { type: Array },
-  razorpay_payment_id: { type: String },
-  razorpay_signature: { type: String },
   created_at: { type: Number, required: true },
 }, { collection: 'orders' });
 
