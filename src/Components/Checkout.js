@@ -1,4 +1,6 @@
+/* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
+import CryptoJS, { HmacSHA256 } from 'crypto-js';
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -39,8 +41,15 @@ const Checkout = () => {
     ));
   };
 
-  const handleResponse = (res) => {
-    console.log(res);
+  const handleVerifyResponse = (response, razorpay_order_id) => {
+    const { razorpay_payment_id, razorpay_signature } = response;
+    const secret = 'mvILpY5Z5m7tCEHJgqu16EKR';
+    const generated_signature = HmacSHA256(`${razorpay_order_id}|${razorpay_payment_id}`, secret).toString(CryptoJS.enc.Hex);
+    if (generated_signature === razorpay_signature) {
+      setMessage('Successful');
+    } else {
+      setMessage('Unsuccessful');
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -49,7 +58,7 @@ const Checkout = () => {
     setMessage(null);
     try {
       const body = { amount: parseInt(inputForm.amount, 10) };
-      const reqOptions = { timeout: 20000 };
+      const reqOptions = { timeout: 30000 };
       const response = await axios.post('/api/razorpay', body, reqOptions);
       const options = {
         key: 'rzp_test_Baj0ZJ8G2mlZZy', // Enter the Key ID generated from the Dashboard
@@ -59,7 +68,7 @@ const Checkout = () => {
         description: 'Test Transaction',
         image: null, // URL
         order_id: response.data.id, // This is the `id` obtained in the response.
-        handler: (res) => { handleResponse(res); },
+        handler: (res) => { handleVerifyResponse(res, response.data.id); },
         prefill: {
           name: 'Gaurav Kumar',
           email: 'gaurav.kumar@example.com',
@@ -82,6 +91,7 @@ const Checkout = () => {
     script.async = true;
     document.body.appendChild(script);
   }, []);
+
   return (
     <Paper className={classes.root}>
       <CssBaseline />

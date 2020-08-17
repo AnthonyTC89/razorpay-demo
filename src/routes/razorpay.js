@@ -21,11 +21,9 @@ router.post('/api/razorpay', async (req, res) => {
       notes: [],
     };
     const response = await instance.orders.create(preOrder);
-    await Order.create(response);
-    // res.sendStatus(201);
+    await Order.create(response); // optional
     res.status(201).send(response);
   } catch (err) {
-    console.log(err);
     res.sendStatus(404);
   }
 });
