@@ -22,6 +22,7 @@
 * [About the Project](#about-the-project)
 * [Built With](#built-with)
 * [Installation](#installation)
+* [API Routes](#API-Routes)
 * [Scripts](#Scripts)
 * [Future Features](#Future-Features)
 * [Contact](#Contact)
@@ -67,6 +68,13 @@ A Personal Project with all the requirements to do a payment with RAZORPAY servi
   4. run `npm run build` to have all the files from the react-app.
   5. run `npm start`
   6. go to [localhost:3001](http://localhost:3001)
+
+### API Routes
+
+  * Use [Postman](https://www.postman.com/). (recommended)
+
+  * (GET) `/api/orders/` 
+  * (GET) `/api/payments/` 
 
 ### Scripts
 
