@@ -64,7 +64,7 @@ A Personal Project with all the requirements to do a payment with RAZORPAY servi
     *   REACT_APP_RAZORPAY_KEY_ID=`razorpay_key_id` from dashboard
     *   REACT_APP_RAZORPAY_KEY_SECRET=`razorpay_key_secret` from dashboard
 
-  4. run `npm build` to have all the files from the react-app.
+  4. run `npm run build` to have all the files from the react-app.
   5. run `npm start`
   6. go to [localhost:3001](http://localhost:3001)
 
